@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="http://hytravel.dev.qunar.com/page#/city/298919?destId=298919&destType=6&destName=%E6%AD%A3%E5%AE%9A"></script>
+  </head>
+  <body>
+    <div>
+      <input type="file" name="file" id="file" />
+      <button id="upload">上传</button>
+      <div></div>
+      <progress id="progress" value="0" max="100"></progress>
+      <div id="upload_progress"></div>
+      <img id="image" src="" width="200" />
+    </div>
+    <script type="text/javascript">
+      (function () {
+        'use strict';
+
+        var file = document.querySelector('#file');
+        var upload = document.querySelector('#upload');
+        var progress = document.querySelector('#progress');
+        var upload_progress = document.querySelector('#upload_progress');
+        var image = document.querySelector('#image');
+        var xhr = new XMLHttpRequest();
+
+        upload.addEventListener('click', uploadFile, false);
+        file.addEventListener('change', previewImage, false);
+
+        // 点击上传
+        function uploadFile(event) {
+          var formData = new FormData();
+          formData.append('test-upload', file.files[0]);
+          xhr.onload = uploadSuccess;
+          xhr.upload.onprogress = setProgress;
+          xhr.open('post', '/users/upload', true);
+          xhr.send(formData);
+        }
+
+        // 成功上传
+        function uploadSuccess(event) {
+          if (xhr.readyState === 4) {
+            console.log(xhr.responseText);
+          }
+        }
+
+        // 进度条
+        function setProgress(event) {
+          console.log(event)
+          if (event.lengthComputable) {
+            var complete = Number.parseInt(event.loaded / event.total * 100);
+            progress.value = complete;
+            upload_progress.innerHTML = complete + '%'
+          }
+        }
+
+        // 图片预览
+        function previewImage(event) {
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            image.src = event.target.result;
+          };
+          reader.readAsDataURL(event.target.files[0]);
+        }
+      })();
+    </script>
+  </body>
+</html>
