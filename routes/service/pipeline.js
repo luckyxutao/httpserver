@@ -5,6 +5,7 @@ var allTasks = require('./pipeline.data');
 //             3 : ' error'
 //单个流水线任务包含不同步骤
 var taskPool = allTasks[0];//单条流水线
+var taskStop = false;
 var readFile = function(book, delay = 1000) {
 	return new Promise(function(resolve, reject) {
     book.state = 1;//prossing
@@ -14,7 +15,9 @@ var readFile = function(book, delay = 1000) {
         // throw new Error('任务执行出错!!')
       } else {
         book.state = 2;//succedd
+        
       }
+      console.log('readFile', book.stepName);
 			resolve(book);
 		}, book.time);
 	});
@@ -24,26 +27,27 @@ function resetPipeline(){
   for (let i = 0; i < followList.length; i++) {
     let m = followList[i].steps;
     for (let j = 0; j < m.length; j++) {
-      m.state = 0;
+      m[j].state = 0;
     }
   }
   taskPool.finished = false;//流水线处理中
 }
 function* readFiles() {
   resetPipeline();
+  taskStop = false;
   const { followList} = taskPool;    
   for(let i=0;i<followList.length;i++){
     let m = followList[i].steps;
     for(let j=0;j<m.length;j++){
       let o = yield readFile(m[j]);
-      if (o.state === 3) {
+      if (o.state === 3 || taskStop) {//单个step出错，或点按钮停止，都停止
         console.log('frai');
         taskPool.finished = true;//流水线失败
         return;
       }
     }
   }  
-  taskPool.taskState = true;//流水线成功
+  taskPool.finished = true;//流水线成功
   // console.log(JSON.stringify(taskPool))
 }
 
@@ -77,7 +81,8 @@ module.exports = {
 	getAllTasks: function() {
 		return allTasks;
 	},
-	stopJob: function() {
+	stopJob: function(pipeId=1000) {
+    taskStop = true;
 		taskPool.finished = true;
 	},
 	hasDone : function(){

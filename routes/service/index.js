@@ -26,9 +26,10 @@ router.get('/pipeline/stop', function (req, res, next) {
 		ok: true
 	})
 });
-
+//获取一条流水线信息
 router.get('/pipeline', function(req, res, next) {
 	if (req.query.pipeId === '1000') {
+		console.log('polling pipelines');
 		res.send(getOnePipeLine())
 	} else {
 		res.send({

@@ -150,7 +150,7 @@ module.exports = [{
                     "bootFile": "c:\\testfile.py",
                     "bootCommand": "ls -l",
                     "resportArchive": true,
-                    "shouldFail": true,
+                    // "shouldFail": true,
                     "clearFinish": false,
                     "time": 5000
                 },
