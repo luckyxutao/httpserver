@@ -141,6 +141,7 @@ module.exports = [{
                     "stepName": "扫描中",
                     "svnName": "北京开发中心代码仓库（svn://10.1.0.7）",
                     "state": 0,
+                    "shouldFail":true,
                     "appName": "HR",
                     "projectName": "OA二期",
                     "sVNcredentials": "0be054f1-0ab8-45b0-a250-e02dab4bccb0",
