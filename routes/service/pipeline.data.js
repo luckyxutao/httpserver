@@ -15,6 +15,7 @@ module.exports = [{
     statusStage:'finished',
     barometer:'sunny',
     finished : true,//执行完毕,
+    deployed : false,//部署阶段
     followList : [
         {
             "stageId": "20171116112930714",

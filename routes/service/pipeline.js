@@ -6,6 +6,13 @@ var allTasks = require('./pipeline.data');
 //单个流水线任务包含不同步骤
 var taskPool = allTasks[0];//单条流水线
 var taskStop = false;
+function asleep(time=1000) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, 5000)
+  })
+}
 var readFile = function(book, delay = 1000) {
 	return new Promise(function(resolve, reject) {
     book.state = 1;//prossing
@@ -35,6 +42,12 @@ function resetPipeline(){
 function* readFiles() {
   resetPipeline();
   taskStop = false;
+
+  //部署开始
+  taskPool.deployed = false;
+  yield asleep(5000);
+  taskPool.deployed = true;
+  //部署完成
   const { followList} = taskPool;    
   for(let i=0;i<followList.length;i++){
     let m = followList[i].steps;
