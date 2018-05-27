@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "prd",
+            "script": "./bin/www",
+            "env": {
+                "GAME_ID": "1",
+                "NODE_PORT": "3000"
+            }
+        }
+    ]
+}
