@@ -7,7 +7,7 @@
   <body>
     <div class="page-root">
       <ul>
-        <li>全选zuixinxinxi4443：<input type='checkbox' id='check-all'></li>
+        <li>全选zuixinxinxi555：<input type='checkbox' id='check-all'></li>
         <li>1 选项 <input type='checkbox' class='check-item'></li>
         <li>2 选项 <input type='checkbox' class='check-item'></li>
         <li>3 选项 <input type='checkbox' class='check-item'></li>
