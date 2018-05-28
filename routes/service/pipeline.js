@@ -44,9 +44,9 @@ function* readFiles() {
   taskStop = false;
 
   //部署开始
-  taskPool.deployed = false;
-  yield asleep(5000);
-  taskPool.deployed = true;
+  // taskPool.deployed = false;
+  // yield asleep(5000);
+  // taskPool.deployed = true;
   //部署完成
   const { followList} = taskPool;    
   for(let i=0;i<followList.length;i++){

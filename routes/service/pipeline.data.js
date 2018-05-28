@@ -15,8 +15,38 @@ module.exports = [{
     statusStage:'finished',
     barometer:'sunny',
     finished : true,//执行完毕,
-    deployed : false,//部署阶段
+    deployed : 0,//部署阶段 1,部署成功 2,是部署失败
     followList : [
+        {
+            "stageId": "20171116112930714",
+            "flowName": "部署",
+            "state": '0',
+            "cteate_time": "2017-11-16",
+            "sortNumber": "1",
+            "flowModeId": "f1663936-cee2-402c-ac74-4b93b102a9db",
+            "stageURL": "/trigger/init.do",
+            "flow_formId": null,
+            "goals_Maven": null,
+            "steps": [
+                {
+                    "stepId": "11",
+                    "stepName": "",
+                    "svnName": "北京开发中心代码仓库（svn://10.1.0.7）",
+                    "appName": "HR",
+                    "state": 0,
+                    "projectName": "OA二期",
+                    "sVNcredentials": "0be054f1-0ab8-45b0-a250-e02dab4bccb0",
+                    "directory": "测试（Test）",
+                    "category": "Selenium",
+                    "stageType": "测试",
+                    "bootFile": "c:\\testfile.py",
+                    "bootCommand": "ls -l",
+                    "resportArchive": true,
+                    "clearFinish": false,
+                    "time" : 5000
+                },
+            ]
+        },
         {
             "stageId": "20171116112930714",
             "flowName": "提交验证",
