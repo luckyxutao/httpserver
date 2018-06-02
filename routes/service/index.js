@@ -5,6 +5,14 @@ var pipeLine = require('./pipeline');
 console.log(pipeLine);
 
 const { getOnePipeLine, startJob, stopJob, hasDone, getAllTasks } = pipeLine;
+router.get(`/currentUser`,function(req,res,next){
+	res.send({
+      name: 'Serati Ma',
+      avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+      userid: '00000001',
+      notifyCount: 12,
+    })
+});
 router.get('/pipeline/all', function(req, res, next) {
     res.send({
       data: {
