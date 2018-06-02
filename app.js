@@ -8,8 +8,12 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var proc = require('./routes/service');
+
 var app = express();
 
+app.get('/page*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'views/page','index.html'));
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
